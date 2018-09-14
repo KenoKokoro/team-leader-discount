@@ -4,7 +4,7 @@
 namespace Discount;
 
 
-use Discount\V1\Providers\RouteServiceProvider as V1RouteServiceProvider;
+use Discount\V1\Providers\V1ServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class DiscountServiceProvider extends ServiceProvider
@@ -16,6 +16,6 @@ class DiscountServiceProvider extends ServiceProvider
 
     private function v1(): void
     {
-        $this->app->register(V1RouteServiceProvider::class);
+        $this->app->register(V1ServiceProvider::class);
     }
 }
