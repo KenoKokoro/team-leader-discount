@@ -4,6 +4,8 @@
 namespace Discount\V1\BLL\Discount;
 
 
+use App\External\Client\Exceptions\ServiceNotFound;
+use Discount\V1\Modules\Calculator\Exceptions\NotEligibleForDiscount;
 use Illuminate\Contracts\Support\Arrayable;
 
 interface DiscountInterface
@@ -17,6 +19,8 @@ interface DiscountInterface
      * Calculate the discount for the given order
      * @param array $order
      * @return Arrayable
+     * @throws ServiceNotFound
+     * @throws NotEligibleForDiscount
      */
     public function calculateFor(array $order): Arrayable;
 }

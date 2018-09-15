@@ -4,12 +4,8 @@
 namespace Discount\V1\Modules\Calculator\Data;
 
 
-use Illuminate\Contracts\Support\Arrayable;
+use App\Generics\SingleDataObject;
 
-class DiscountData implements Arrayable
+class DiscountData extends SingleDataObject
 {
-    public function toArray()
-    {
-        return [];
-    }
 }
