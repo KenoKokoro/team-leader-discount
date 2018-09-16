@@ -71,9 +71,9 @@ class Handler extends ExceptionHandler
         } elseif ($exception instanceof AuthenticationException) {
             return $response->unauthorized($exception->getMessage());
         } elseif ($exception instanceof NotFoundHttpException) {
-            return $response->internalError('Route does not exist.');
+            return $response->notFound('Route does not exist.');
         } elseif ($exception instanceof MethodNotAllowedHttpException) {
-            return $response->internalError('Method not allowed on this route.');
+            return $response->methodNotAllowed('Method not allowed on this route.');
         }
 
         return $response->internalError($exception->getMessage());

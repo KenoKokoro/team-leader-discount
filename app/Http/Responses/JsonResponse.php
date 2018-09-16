@@ -99,6 +99,21 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_INTERNAL_SERVER_ERROR);
     }
 
+    public function methodNotAllowed(string $message, array $append = []): parent
+    {
+        if (empty($message)) {
+            $message = 'Method not allowed on this route.';
+        }
+
+        $response = $this->getResponse($message);
+
+        if ( ! empty($append)) {
+            $response = array_merge($response, $append);
+        }
+
+        return $this->parentInstance($response, parent::HTTP_METHOD_NOT_ALLOWED);
+    }
+
     private function getResponse(string $message): array
     {
         return [
