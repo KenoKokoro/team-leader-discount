@@ -12,6 +12,7 @@ use Discount\V1\Modules\Calculator\Data\OrderData;
 use Discount\V1\Modules\Calculator\Exceptions\NotEligibleForDiscount;
 use Discount\V1\Modules\Calculator\Rules\CustomerReachedRevenue;
 use Discount\V1\Modules\Calculator\Rules\SwitchesCategorySixthFree;
+use Discount\V1\Modules\Calculator\Rules\ToolsCategoryTwoOrMoreProducts;
 
 class DiscountRuleCalculator implements DiscountCalculation
 {
@@ -27,7 +28,8 @@ class DiscountRuleCalculator implements DiscountCalculation
 
     private $rulesByPriority = [
         CustomerReachedRevenue::class,
-        SwitchesCategorySixthFree::class
+        SwitchesCategorySixthFree::class,
+        ToolsCategoryTwoOrMoreProducts::class
     ];
 
     public function calculate(OrderData $order): DiscountData

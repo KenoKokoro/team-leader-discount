@@ -57,46 +57,25 @@ class CustomerReachedRevenue extends BaseRule
 
     /**
      * Generate the discount attributes and prepare the attributes for response
-     * @param OrderData $data
+     * @param OrderData $order
      * @return array
      */
-    private function buildDiscountAttributes(OrderData $data): array
+    private function buildDiscountAttributes(OrderData $order): array
     {
-        $total = floatval($data->total());
-        $affectedIds = array_pluck($data->toArray()['items'], ['product-id']);
+        $total = floatval($order->total());
+        $affectedIds = array_pluck($order->toArray()['items'], ['product-id']);
+        $discountOrder = $this->discountOrder($order, $affectedIds);
 
         return [
             'discount' => [
                 'key' => self::KEY,
                 'percent' => self::DISCOUNT * 100 . '%',
-                'price' => $this->discountPrice($total, self::DISCOUNT),
-                'difference' => $this->discountPriceDifference($total, self::DISCOUNT),
-                'reason' => "The customer {$data->customer()->name()} has already spent over " . self::REVENUE_LIMIT . " € ({$data->customer()->revenue()} €)",
-                'order' => $this->discountOrder($data, $affectedIds),
+                'price' => $discountOrder['total'],
+                'difference' => ($total - $discountOrder['total']),
+                'reason' => "The customer {$order->customer()->name()} has already spent over " . self::REVENUE_LIMIT . " € ({$order->customer()->revenue()} €)",
+                'order' => $discountOrder,
             ],
-            'order' => $data->toArray()
+            'order' => $order->toArray()
         ];
-    }
-
-    /**
-     * Used to calculate the new discount price
-     * @param float $total
-     * @param float $discount
-     * @return float
-     */
-    private function discountPrice(float $total, float $discount): float
-    {
-        return ($total - floatval($this->discountPriceDifference($total, $discount)));
-    }
-
-    /**
-     * The difference how much the total price will be discounted
-     * @param float $total
-     * @param float $discount
-     * @return float
-     */
-    private function discountPriceDifference(float $total, float $discount): float
-    {
-        return $total * $discount;
     }
 }

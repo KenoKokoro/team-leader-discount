@@ -77,40 +77,27 @@ class SwitchesCategorySixthFree extends BaseRule
 
     /**
      * Generate the discount attributes and prepare the attributes for response
-     * @param OrderData $data
+     * @param OrderData $order
      * @param array     $products The products for discount
      * @return array
      */
-    private function buildDiscountAttributes(OrderData $data, array $products): array
+    private function buildDiscountAttributes(OrderData $order, array $products): array
     {
-        $total = floatval($data->total());
-        $discountPrice = $this->discountPrice($total, $products);
+        $total = floatval($order->total());
         $affectedIds = array_pluck($products, ['product-id']);
-        $percent = number_format((($total - $discountPrice) / $total) * 100, 0);
+        $discountOrder = $this->discountOrder($order, $affectedIds);
+        $percent = number_format((($total - $discountOrder['total']) / $total) * 100, 0);
 
         return [
             'discount' => [
                 'key' => self::KEY,
                 'percent' => "{$percent}%",
-                'price' => $discountPrice,
-                'difference' => ($total - $discountPrice),
+                'price' => $discountOrder['total'],
+                'difference' => ($total - $discountOrder['total']),
                 'reason' => "When you buy five products from Switches category, you get a sixth for free.",
-                'order' => $this->discountOrder($data, $affectedIds),
+                'order' => $discountOrder,
             ],
-            'order' => $data->toArray()
+            'order' => $order->toArray()
         ];
-    }
-
-    /**
-     * Used to calculate the new discount price
-     * @param float $total
-     * @param array $products
-     * @return float
-     */
-    private function discountPrice(float $total, array $products): float
-    {
-        $productPrices = array_pluck($products, 'unit-price');
-
-        return $total - array_sum($productPrices);
     }
 }
