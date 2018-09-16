@@ -32,11 +32,11 @@ class DiscountsController extends Controller
     {
         $this->validate($request, $this->discount->calculationRules());
         try {
-            $data = $this->discount->calculateFor($request->only(['customer-id', 'items', 'total']));
+            $data = $this->discount->calculateFor($request->only(['customer-id', 'items', 'total', 'id']));
 
             return $this->json()->ok('', ['result' => $data->toArray()]);
         } catch (NotEligibleForDiscount $exception) {
-            return $this->json()->ok($exception->getMessage());
+            return $this->json()->ok($exception->getMessage(), ['result' => $exception->getOrder()]);
         }
     }
 }

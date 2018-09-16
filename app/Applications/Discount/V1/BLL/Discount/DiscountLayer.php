@@ -40,6 +40,7 @@ class DiscountLayer implements DiscountInterface
     public function calculationRules(): array
     {
         return [
+            'id' => 'required',
             'customer-id' => 'required',
             'total' => 'required',
             'items' => 'required|array',

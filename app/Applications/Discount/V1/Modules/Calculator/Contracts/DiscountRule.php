@@ -6,6 +6,7 @@ namespace Discount\V1\Modules\Calculator\Contracts;
 
 use Discount\V1\Modules\Calculator\Data\DiscountData;
 use Discount\V1\Modules\Calculator\Data\OrderData;
+use Discount\V1\Modules\Calculator\Exceptions\NotEligibleForDiscount;
 
 interface DiscountRule
 {
@@ -18,8 +19,9 @@ interface DiscountRule
 
     /**
      * Get the discount for the given rule
-     * @param OrderData $data
+     * @param OrderData $order
      * @return DiscountData
+     * @throws NotEligibleForDiscount
      */
-    public function discount(OrderData $data): DiscountData;
+    public function discount(OrderData $order): DiscountData;
 }

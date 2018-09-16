@@ -14,8 +14,18 @@ class ToolsCategoryTwoOrMoreProducts extends BaseRule
         // TODO: Implement match() method.
     }
 
-    public function discount(OrderData $data): DiscountData
+    public function discount(OrderData $order): DiscountData
     {
         // TODO: Implement discount() method.
+    }
+
+    protected function discountedUnitPrice(array $item): float
+    {
+        // TODO: Implement discountedUnitPrice() method.
+    }
+
+    protected function discountedItemTotal(array $item): float
+    {
+        // TODO: Implement discountedItemTotal() method.
     }
 }
