@@ -44,15 +44,18 @@ class ToolsCategoryTwoOrMoreProducts extends BaseRule
 
     protected function discountedUnitPrice(array $item): float
     {
-        return floatval($item['unit-price']);
+        $price = floatval($item['unit-price']);
+
+        if ($item['quantity'] === '1') {
+            return ($price - ($price * self::DISCOUNT));
+        }
+
+        return $price;
     }
 
     protected function discountedItemTotal(array $item): float
     {
         $price = floatval($item['unit-price']);
-        if ($item['product-id'] !== $this->productId) {
-            return $price;
-        }
 
         return floatval($item['total']) - ($price * self::DISCOUNT);
     }
@@ -107,7 +110,7 @@ class ToolsCategoryTwoOrMoreProducts extends BaseRule
                 'percent' => "{$percent}%",
                 'price' => $discountOrder['total'],
                 'difference' => ($total - $discountOrder['total']),
-                'reason' => "When you buy two or more products from Tools category, you get a 20% discount on the cheapest product.",
+                'reason' => 'When you buy two or more products from Tools category, you get a 20% discount on the cheapest product.',
                 'order' => $discountOrder,
             ],
             'order' => $order->toArray()

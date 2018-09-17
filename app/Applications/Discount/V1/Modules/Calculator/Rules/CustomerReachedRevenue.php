@@ -50,7 +50,7 @@ class CustomerReachedRevenue extends BaseRule
 
     protected function discountedItemTotal(array $item): float
     {
-        $unit = floatval($item['unit-price']);
+        $unit = $this->discountedUnitPrice($item);
 
         return $item['quantity'] * $unit;
     }

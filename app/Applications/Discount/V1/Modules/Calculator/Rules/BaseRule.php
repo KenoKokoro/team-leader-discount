@@ -62,15 +62,15 @@ abstract class BaseRule implements DiscountRule
      */
     private function mapNewDiscountPrices(array $items, array $affectedIds): array
     {
-        return collect($items)->map(function($item) use ($affectedIds) {
+        return collect($items)->map(function ($item) use ($affectedIds) {
             if ( ! in_array($item['product-id'], $affectedIds)) {
                 return $item;
             }
 
-            $item['unit-price'] = $this->discountedUnitPrice($item);
-            $item['total'] = $this->discountedItemTotal($item);
+            $priceData['unit-price'] = $this->discountedUnitPrice($item);
+            $priceData['total'] = $this->discountedItemTotal($item);
 
-            return $item;
+            return array_merge($item, $priceData);
         })->toArray();
     }
 
