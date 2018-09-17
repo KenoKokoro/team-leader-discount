@@ -21,9 +21,9 @@ class SwitchesCategorySixthFree extends BaseRule
      */
     private $products = [];
 
-    public function match(OrderData $data): bool
+    public function match(OrderData $order): bool
     {
-        $products = $this->findMatchingProducts($data->items()->get(self::CATEGORY_ID), self::PRODUCT_LIMIT);
+        $products = $this->findMatchingProducts($order->items()->get(self::CATEGORY_ID), self::PRODUCT_LIMIT);
 
         if ( ! is_null($products)) {
             $this->hasMatch = true;
@@ -94,7 +94,7 @@ class SwitchesCategorySixthFree extends BaseRule
                 'percent' => "{$percent}%",
                 'price' => $discountOrder['total'],
                 'difference' => ($total - $discountOrder['total']),
-                'reason' => "When you buy five products from Switches category, you get a sixth for free.",
+                'reason' => 'When you buy five products from Switches category, you get a sixth for free.',
                 'order' => $discountOrder,
             ],
             'order' => $order->toArray()

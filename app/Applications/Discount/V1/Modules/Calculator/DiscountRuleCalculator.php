@@ -7,6 +7,7 @@ namespace Discount\V1\Modules\Calculator;
 use App\Generics\GenericFactoryInterface;
 use Discount\V1\Modules\Calculator\Contracts\DiscountCalculation;
 use Discount\V1\Modules\Calculator\Contracts\DiscountRule;
+use Discount\V1\Modules\Calculator\Contracts\RuleFactoryInterface;
 use Discount\V1\Modules\Calculator\Data\DiscountData;
 use Discount\V1\Modules\Calculator\Data\OrderData;
 use Discount\V1\Modules\Calculator\Exceptions\NotEligibleForDiscount;
@@ -17,13 +18,13 @@ use Discount\V1\Modules\Calculator\Rules\ToolsCategoryTwoOrMoreProducts;
 class DiscountRuleCalculator implements DiscountCalculation
 {
     /**
-     * @var GenericFactoryInterface
+     * @var RuleFactoryInterface
      */
-    private $generic;
+    private $ruleFactory;
 
-    public function __construct(GenericFactoryInterface $generic)
+    public function __construct(RuleFactoryInterface $ruleFactory)
     {
-        $this->generic = $generic;
+        $this->ruleFactory = $ruleFactory;
     }
 
     private $rulesByPriority = [
@@ -68,9 +69,6 @@ class DiscountRuleCalculator implements DiscountCalculation
      */
     private function createRuleInstance(string $className): DiscountRule
     {
-        /** @var DiscountRule $instance */
-        $instance = new $className($this->generic);
-
-        return $instance;
+        return $this->ruleFactory->make($className);
     }
 }

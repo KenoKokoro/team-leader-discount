@@ -22,9 +22,9 @@ class ToolsCategoryTwoOrMoreProducts extends BaseRule
      */
     private $productId;
 
-    public function match(OrderData $data): bool
+    public function match(OrderData $order): bool
     {
-        $product = $this->findMatchingProduct($data->items()->get(self::CATEGORY_ID), self::PRODUCT_LIMIT);
+        $product = $this->findMatchingProduct($order->items()->get(self::CATEGORY_ID), self::PRODUCT_LIMIT);
         if ( ! is_null($product)) {
             $this->productId = $product['product-id'];
             $this->hasMatch = true;

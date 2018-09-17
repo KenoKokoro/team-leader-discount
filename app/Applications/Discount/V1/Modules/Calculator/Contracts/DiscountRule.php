@@ -12,10 +12,10 @@ interface DiscountRule
 {
     /**
      * Check if the given rule matches against the given order data
-     * @param OrderData $data
+     * @param OrderData $order
      * @return bool
      */
-    public function match(OrderData $data): bool;
+    public function match(OrderData $order): bool;
 
     /**
      * Get the discount for the given rule

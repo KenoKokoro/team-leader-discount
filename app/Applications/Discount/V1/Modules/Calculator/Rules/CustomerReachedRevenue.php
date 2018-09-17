@@ -20,11 +20,11 @@ class CustomerReachedRevenue extends BaseRule
      */
     private $customer;
 
-    public function match(OrderData $data): bool
+    public function match(OrderData $order): bool
     {
-        if ($data->customer()->revenue() > self::REVENUE_LIMIT) {
+        if ($order->customer()->revenue() > self::REVENUE_LIMIT) {
             $this->hasMatch = true;
-            $this->customer = $data->customer();
+            $this->customer = $order->customer();
         }
 
         return $this->hasMatch;
