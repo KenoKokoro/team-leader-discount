@@ -34,6 +34,7 @@ abstract class DiscountTestCase extends TestCase
         /** @var OrderData $instance */
         $instance = $this->generic->make(OrderData::class, [
             'customer' => ['revenue' => $revenue, 'name' => 'John Doe'],
+            'customer-id' => '1',
             'items' => $items,
             'products' => $products,
             'total' => $total,

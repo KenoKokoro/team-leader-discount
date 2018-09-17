@@ -101,7 +101,8 @@ class SwitchesCategorySixthFreeTest extends DiscountTestCase
                         ['product-id' => 'B3', 'quantity' => '4', 'unit-price' => '7.15', 'total' => '28.60'],
                         ['product-id' => 'A', 'quantity' => '10', 'unit-price' => '5.55', 'total' => '55.50']
                     ],
-                    'total' => '185.35'
+                    'total' => '185.35',
+                    'customer-id' => '1',
                 ]
             ],
             'order' => $order->toArray()

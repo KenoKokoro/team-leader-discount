@@ -67,7 +67,8 @@ class CustomerReachedRevenueTest extends DiscountTestCase
                         ['product-id' => 'A', 'quantity' => '2', 'unit-price' => '8.77', 'total' => '17.55'],
                         ['product-id' => 'B', 'quantity' => '4', 'unit-price' => '6.79', 'total' => '27.18'],
                     ],
-                    'total' => '44.73'
+                    'total' => '44.73',
+                    'customer-id' => '1',
                 ]
             ],
             'order' => $order->toArray()

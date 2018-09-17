@@ -20,7 +20,7 @@ abstract class TestCase extends LumenTestCase
     public function mockInstance(string $instance): MockInterface
     {
         $mock = m::mock($instance);
-        app()->bind($instance, $mock);
+        app()->instance($instance, $mock);
 
         return $mock;
     }

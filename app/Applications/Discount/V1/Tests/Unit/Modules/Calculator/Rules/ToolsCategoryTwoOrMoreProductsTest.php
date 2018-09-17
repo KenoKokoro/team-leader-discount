@@ -100,7 +100,8 @@ class ToolsCategoryTwoOrMoreProductsTest extends DiscountTestCase
                         ['product-id' => 'B', 'quantity' => '4', 'unit-price' => '7.15', 'total' => '28.60'],
                         ['product-id' => 'C', 'quantity' => '10', 'unit-price' => '5.55', 'total' => '55.50']
                     ],
-                    'total' => '98.85'
+                    'total' => '98.85',
+                    'customer-id' => '1',
                 ]
             ],
             'order' => $order->toArray()
@@ -144,7 +145,8 @@ class ToolsCategoryTwoOrMoreProductsTest extends DiscountTestCase
                         ['product-id' => 'B', 'quantity' => '4', 'unit-price' => '7.15', 'total' => '28.60'],
                         ['product-id' => 'C', 'quantity' => '10', 'unit-price' => '5.55', 'total' => '55.50']
                     ],
-                    'total' => '114.35'
+                    'total' => '114.35',
+                    'customer-id' => '1',
                 ]
             ],
             'order' => $order->toArray()
