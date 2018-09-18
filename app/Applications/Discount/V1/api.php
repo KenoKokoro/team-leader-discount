@@ -4,4 +4,5 @@
 
 use Discount\V1\Http\Controllers\DiscountsController;
 
-$router->post('discounts/calculate', DiscountsController::class . '@calculate');
+$router->post('discounts/calculate',
+    ['as' => 'discounts.calculate', 'uses' => DiscountsController::class . '@calculate']);

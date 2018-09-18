@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse as LumenJsonResponse;
 
 class JsonResponse extends LumenJsonResponse
 {
-    public function ok(string $message = '', array $append = []): parent
+    public function ok(string $message = '', array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Successfully executed.';
@@ -22,7 +22,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_OK);
     }
 
-    public function created(string $message = '', array $append = []): parent
+    public function created(string $message = '', array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Successfully created.';
@@ -36,7 +36,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_CREATED);
     }
 
-    public function forbidden(string $message = ''): parent
+    public function forbidden(string $message = ''): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Forbidden.';
@@ -46,7 +46,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_FORBIDDEN);
     }
 
-    public function unauthorized(string $message = ''): parent
+    public function unauthorized(string $message = ''): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Unauthorized.';
@@ -56,7 +56,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_UNAUTHORIZED);
     }
 
-    public function unprocessableEntity(string $message = '', array $append = []): parent
+    public function unprocessableEntity(string $message = '', array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Unprocessable entity.';
@@ -70,7 +70,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_UNPROCESSABLE_ENTITY);
     }
 
-    public function notFound(string $message = '', array $append = []): parent
+    public function notFound(string $message = '', array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Not found.';
@@ -84,7 +84,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_NOT_FOUND);
     }
 
-    public function internalError(string $message = '', array $append = []): parent
+    public function internalError(string $message = '', array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Internal error.';
@@ -99,7 +99,7 @@ class JsonResponse extends LumenJsonResponse
         return $this->parentInstance($response, parent::HTTP_INTERNAL_SERVER_ERROR);
     }
 
-    public function methodNotAllowed(string $message, array $append = []): parent
+    public function methodNotAllowed(string $message, array $append = []): LumenJsonResponse
     {
         if (empty($message)) {
             $message = 'Method not allowed on this route.';
@@ -121,7 +121,7 @@ class JsonResponse extends LumenJsonResponse
         ];
     }
 
-    private function parentInstance(array $data, int $code): parent
+    private function parentInstance(array $data, int $code): LumenJsonResponse
     {
         return new parent($data, $code);
     }

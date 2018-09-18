@@ -9,6 +9,6 @@ class Controller extends BaseController
 {
     protected function json(): JsonResponse
     {
-        return new JsonResponse();
+        return app(JsonResponse::class);
     }
 }

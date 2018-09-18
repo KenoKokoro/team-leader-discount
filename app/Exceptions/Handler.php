@@ -63,11 +63,6 @@ class Handler extends ExceptionHandler
             return $response->unprocessableEntity($exception->getMessage(), [
                 'validator' => $exception->validator->getMessageBag()
             ]);
-        } elseif ($exception instanceof ModelNotFoundException) {
-            return $response->notFound($exception->getMessage());
-        } elseif ($exception instanceof AuthorizationException
-                  or $exception instanceof UnauthorizedHttpException) {
-            return $response->forbidden($exception->getMessage());
         } elseif ($exception instanceof AuthenticationException) {
             return $response->unauthorized($exception->getMessage());
         } elseif ($exception instanceof NotFoundHttpException) {
