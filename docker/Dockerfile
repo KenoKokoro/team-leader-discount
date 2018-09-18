@@ -4,8 +4,13 @@ MAINTAINER Jimmy <stefan.brankovik@cosmicdevelopment.com>
 
 ### NGINX
 ARG NGINX_VERSION=1.10.3-1+deb9u1
+ARG YARN_VERSION=1.9.4-1
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils gnupg2 apt-transport-https
+### Required repositories
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 ### NGINX
 RUN addgroup --system nginx \
@@ -31,6 +36,10 @@ RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/instal
     && php -r "if (hash_file('SHA384', 'composer-setup.php') === '${EXPECTED_COMPOSER_SIGNATURE}') { echo 'Composer.phar Installer verified'; } else { echo 'Composer.phar Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
     && php composer-setup.php --install-dir=/usr/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
+
+### NODEJS + YARN
+RUN apt-get install -y yarn=${YARN_VERSION}
+RUN apt-get install -y nodejs
 
 ### CLEANUP
 RUN rm -rf /var/cache/* \
