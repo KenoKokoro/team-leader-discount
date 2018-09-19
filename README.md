@@ -7,14 +7,16 @@
 4. Docker compose `1.21+` version or above
 5. `make` command installed
 6. `git` installed
-7. Check the `DOCKER_HOST_UID` to be equal to your local user `echo $UID`
-8. Check the `DOCKER_HOST_GID` to be equal to your local user `echo $GID`
+7. Check the `DOCKER_HOST_UID` to be equal to your local user `echo $UID` inside `.env`
+8. Check the `DOCKER_HOST_GID` to be equal to your local user `echo $GID` inside `.env`
 
 ## Installation
 1. `git clone git@github.com:KenoKokoro/team-leader-discount.git`
-2. `cd team-leader-discount && make local-setup` To boot up the docker containers
-3. That should be it
-4. [Documentation link](http://localhost/api/v1/docs)
+2. Go to the `team-leader-discount` folder and run `cp .env.example .env`. Here in your `.env` file set you desired values. 
+Most important are those under the `#Docker` comment and the `API_KEY` (since this is required value)
+3. Execute `make local-setup` to boot up the docker containers
+4. That should be it
+5. [Documentation link](http://localhost/api/v1/docs)
 
 ## Business rules explanation
 1. Costumer with revenue over 1000 is calculated by giving 10% discount of whole price
