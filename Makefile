@@ -7,4 +7,9 @@ local-setup:
 	@docker-compose exec --user=nginx app vendor/bin/phpunit --testsuite V1-Unit
 	@echo "\n\nIntegration tests"
 	@docker-compose exec --user=nginx app vendor/bin/phpunit --testsuite V1-Feature
+	@echo "\nInstalling NodeJs dependencies"
+	@docker-compose exec --user=nginx app yarn install
+	@echo "\nGenerating API documentation"
+	@docker-compose exec --user=nginx app yarn v1-docs
+	@echo "\n\nVisit http://localhost/api/v1/docs to see documentation"
 	@echo "\nApplication is up and running!"
