@@ -1,6 +1,6 @@
 FROM php:7.2.3-fpm-stretch
 
-MAINTAINER Jimmy <stefan.brankovik@cosmicdevelopment.com>
+MAINTAINER Jimmy <stefan.brankovik@gmail.com>
 
 ### NGINX
 ARG NGINX_VERSION=1.10.3-1+deb9u1

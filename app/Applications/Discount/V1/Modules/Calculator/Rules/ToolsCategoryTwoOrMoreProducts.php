@@ -18,7 +18,7 @@ class ToolsCategoryTwoOrMoreProducts extends BaseRule
 
     /**
      * The cheapest product id
-     * @var array
+     * @var string
      */
     private $productId;
 
