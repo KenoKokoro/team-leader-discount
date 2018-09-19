@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
             require __DIR__ . '/../api.php';
         });
         $this->app->router->get('api/v1/docs', function (Router $router) {
-            return view('docs');
+            return view('v1.docs');
         });
     }
 }

@@ -1,0 +1,13 @@
+description: "Discounts resource endpoints"
+/calculate:
+  post:
+    is: ["secured"]
+    description: "Send order data to calculate discount if eligible"
+    body:
+      application/json: !include ../input/discount/calculate.raml
+    responses:
+      200:
+        body:
+          application/json: !include ../output/discount/calculate.raml
+      422: !include ../../helpers/response/422.raml
+      500: !include ../../helpers/response/500.raml

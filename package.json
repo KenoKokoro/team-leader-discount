@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "v1-docs": "node_modules/raml2html/bin/raml2html docs/v1.raml > resources/views/docs.blade.php"
+    "v1-docs": "node_modules/raml2html/bin/raml2html docs/v1.raml > resources/views/v1/docs.blade.php"
   },
-  "dependencies": {
+  "devDependencies": {
     "raml2html": "^7.2.0"
   }
 }

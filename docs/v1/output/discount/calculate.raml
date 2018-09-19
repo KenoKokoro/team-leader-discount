@@ -1,0 +1,101 @@
+type: object
+properties:
+  message: string
+  result:
+    type: object
+    properties:
+      discount?:
+        type: object
+        properties:
+          key:
+            type: string
+            description: "The key for the discount if any"
+          percent:
+            type: string
+            description: "The total percent calculated of the discounted total price"
+          price:
+            type: string
+            description: "The total discounted price. Can be found in the discount->order->total as well"
+          difference:
+            type: string
+            description: "How much cheaper is the discounted total price. (total price - discount total price)"
+          reason:
+            type: string
+            description: "Descriptive message why the discount is given"
+          order:
+            type: object
+            description: "The discounted order in same format as input, but with discounted prices on items and total"
+            properties:
+              id: string
+              customer-id: string
+              items: array
+              total: string
+            example:
+              id: "1"
+              customer-id: "2"
+              items:
+                - product-id: "B102"
+                  quantity: "3"
+                  unit-price: "3.99"
+                  total: "11.97"
+                - product-id: "B101"
+                  quantity: "2"
+                  unit-price: "4.99"
+                  total: "9.98"
+              total: "21.95"
+      order:
+        type: object
+        description: "The original order that was initially sent"
+        properties:
+          id: string
+          customer-id: string
+          items: array
+          total: string
+        example:
+          id: "1"
+          customer-id: "2"
+          items:
+            - product-id: "B102"
+              quantity: "3"
+              unit-price: "4.99"
+              total: "24.95"
+            - product-id: "B101"
+              quantity: "2"
+              unit-price: "5.99"
+              total: "11.98"
+          total: "36.93"
+example:
+  message: "Successfully executed"
+  result:
+    discount:
+      key: "SOME_DISCOUNT_KEY"
+      percent: "40%"
+      price: "21.95"
+      difference: "14.98"
+      reason: "Descriptive information why this discount is given for this order"
+      order:
+        id: "1"
+        customer-id: "2"
+        items:
+          - product-id: "B102"
+            quantity: "3"
+            unit-price: "3.99"
+            total: "11.97"
+          - product-id: "B101"
+            quantity: "2"
+            unit-price: "4.99"
+            total: "9.98"
+        total: "21.95"
+    order:
+      id: "1"
+      customer-id: "2"
+      items:
+        - product-id: "B102"
+          quantity: "3"
+          unit-price: "4.99"
+          total: "24.95"
+        - product-id: "B101"
+          quantity: "2"
+          unit-price: "5.99"
+          total: "11.98"
+      total: "36.93"

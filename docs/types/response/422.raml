@@ -1,0 +1,18 @@
+type: object
+properties:
+  message:
+    type: object
+    properties:
+      error: string
+  validator:
+    type: object
+    properties:
+      column_name: array
+example:
+  message:
+    error: "The given data failed to pass validation."
+  validator:
+    column_name:
+      - "Example validation error #1"
+      - "Example validation error #2"
+

@@ -5,7 +5,19 @@ protocols: [ HTTP ]
 baseUri: "http://localhost/api/{version}"
 mediaType: "application/json"
 
-/dicounts:
-  /calculate:
-    post:
-      description: "Send order in order to calculate discount for the given order"
+traits:
+  secured:
+    usage: "Apply this to any method that needs to be secured"
+    description: "Some requests require authentication."
+    headers:
+      Authorization:
+        description: "Authorization using bearer token"
+        example: "'Bearer 75qtYZC4oGZdDtun'"
+        required: true
+    responses:
+      401: !include helpers/response/401.raml
+
+
+types: !include types/index.raml
+
+/dicounts: !include v1/endpoints/discounts.raml
